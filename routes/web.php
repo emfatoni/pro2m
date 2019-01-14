@@ -18,4 +18,8 @@ Route::get('/', function () {
 
 //Route::resource('sp', 'StrategicProgramsController');
 
-Route::post('sp', 'StrategicProgramsController@store');
+Route::get('sp', 'StrategicProgramsController@index');
+
+Route::get('sp/{id}', 'StrategicProgramsController@show');
+
+Route::post('sp/store', 'StrategicProgramsController@store');

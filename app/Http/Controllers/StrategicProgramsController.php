@@ -14,9 +14,16 @@ class StrategicProgramsController extends Controller
      */
     public function index()
     {
-        $sps = StrategicProgram::all();
-        print_r(json_encode($sps));
-        return "";
+        $data = StrategicProgram::all();
+
+        if(count($data) > 0){ //mengecek apakah data kosong atau tidak
+            $res['message'] = "Success!";
+            $res['values'] = $data;
+            return response($res);
+        }else{
+            $res['message'] = "Empty!";
+            return response($res);
+        }
     }
 
     /**
@@ -37,8 +44,22 @@ class StrategicProgramsController extends Controller
      */
     public function store(Request $request)
     {
-        $program = $request->post('program');
-        print_r($program);
+        $program = $request->input('program');
+        $subprogram = $request->input('subprogram');
+        $subsubprogram = $request->input('subsubprogram');
+        $year = $request->input('year');
+
+        $data = new StrategicProgram();
+        $data->program = $program;
+        $data->subprogram = $subprogram;
+        $data->subsubprogram = $subsubprogram;
+        $data->year = $year;
+
+        if($data->save()){
+            $res['message'] = "Success!";
+            $res['value'] = "$data";
+            return response($res);
+        }
     }
 
     /**
@@ -49,9 +70,17 @@ class StrategicProgramsController extends Controller
      */
     public function show($id)
     {
-        $sps = StrategicProgram::find($id);
-        print_r(json_encode($sps));
-        return "";
+        $data = StrategicProgram::where('id',$id)->get();
+
+        if(count($data) > 0){ //mengecek apakah data kosong atau tidak
+            $res['message'] = "Success!";
+            $res['values'] = $data;
+            return response($res);
+        }
+        else{
+            $res['message'] = "Failed!";
+            return response($res);
+        }
     }
 
     /**
