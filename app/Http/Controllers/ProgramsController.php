@@ -121,7 +121,7 @@ class ProgramsController extends Controller
 
         if($data->save()){
             $res['message'] = "Success!";
-            $res['value'] = "$data";
+            $res['value'] = $data;
             return response($res);
         }else{
             $res['message'] = "Failed!";
@@ -141,7 +141,7 @@ class ProgramsController extends Controller
 
         if($data->delete()){
             $res['message'] = "Success!";
-            $res['value'] = "$data";
+            $res['value'] = $data;
             return response($res);
         }else{
             $res['message'] = "Failed!";

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\StrategicProgram;
+use App\Wbs;
 
-class StrategicProgramsController extends Controller
+class WBSController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class StrategicProgramsController extends Controller
      */
     public function index()
     {
-        $data = StrategicProgram::all();
+        $data = Wbs::all();
 
         if(count($data) > 0){
             $res['message'] = "Success!";
@@ -44,17 +44,16 @@ class StrategicProgramsController extends Controller
      */
     public function store(Request $request)
     {
-        $program = $request->input('program');
-        $subprogram = $request->input('subprogram');
-        $subsubprogram = $request->input('subsubprogram');
-        $year = $request->input('year');
+        $data = new Wbs();
 
-        $data = new StrategicProgram();
-
-        $data->program = $program;
-        $data->subprogram = $subprogram;
-        $data->subsubprogram = $subsubprogram;
-        $data->year = $year;
+        $data->name = $request->input('name');
+        $data->start_plan = $request->input('start_plan');
+        $data->end_plan = $request->input('end_plan');
+        $data->start_actual = $request->input('start_actual');
+        $data->end_actual = $request->input('end_actual');
+        $data->status = $request->input('status');
+        $data->document = $request->input('document');
+        $data->deliverable_id = $request->input('deliverable_id');
 
         if($data->save()){
             $res['message'] = "Success!";
@@ -74,7 +73,7 @@ class StrategicProgramsController extends Controller
      */
     public function show($id)
     {
-        $data = StrategicProgram::where('id',$id)->get();
+        $data = Wbs::where('id',$id)->get();
 
         if(count($data) > 0){
             $res['message'] = "Success!";
@@ -107,17 +106,16 @@ class StrategicProgramsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $program = $request->input('program');
-        $subprogram = $request->input('subprogram');
-        $subsubprogram = $request->input('subsubprogram');
-        $year = $request->input('year');
+        $data = Wbs::where('id',$id)->first();
 
-        $data = StrategicProgram::where('id',$id)->first();
-
-        $data->program = $program;
-        $data->subprogram = $subprogram;
-        $data->subsubprogram = $subsubprogram;
-        $data->year = $year;
+        $data->name = $request->input('name');
+        $data->start_plan = $request->input('start_plan');
+        $data->end_plan = $request->input('end_plan');
+        $data->start_actual = $request->input('start_actual');
+        $data->end_actual = $request->input('end_actual');
+        $data->status = $request->input('status');
+        $data->document = $request->input('document');
+        $data->deliverable_id = $request->input('deliverable_id');
 
         if($data->save()){
             $res['message'] = "Success!";
@@ -137,7 +135,7 @@ class StrategicProgramsController extends Controller
      */
     public function destroy($id)
     {
-        $data = StrategicProgram::where('id',$id)->first();
+        $data = Wbs::where('id',$id)->first();
 
         if($data->delete()){
             $res['message'] = "Success!";

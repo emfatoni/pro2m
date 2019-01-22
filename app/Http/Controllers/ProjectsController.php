@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\StrategicProgram;
+use App\Project;
 
-class StrategicProgramsController extends Controller
+class ProjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class StrategicProgramsController extends Controller
      */
     public function index()
     {
-        $data = StrategicProgram::all();
+        $data = Project::all();
 
         if(count($data) > 0){
             $res['message'] = "Success!";
@@ -44,17 +44,16 @@ class StrategicProgramsController extends Controller
      */
     public function store(Request $request)
     {
-        $program = $request->input('program');
-        $subprogram = $request->input('subprogram');
-        $subsubprogram = $request->input('subsubprogram');
-        $year = $request->input('year');
+        $data = new Project();
 
-        $data = new StrategicProgram();
-
-        $data->program = $program;
-        $data->subprogram = $subprogram;
-        $data->subsubprogram = $subsubprogram;
-        $data->year = $year;
+        $data->name = $request->input('name');
+        $data->cost = $request->input('cost');
+        $data->start_plan_date = $request->input('start_plan_date');
+        $data->end_plan_date = $request->input('end_plan_date');
+        $data->document = $request->input('document');
+        $data->program_id = $request->input('program_id');
+        $data->activity_source_id = $request->input('activity_source_id');
+        $data->team_id = $request->input('team_id');
 
         if($data->save()){
             $res['message'] = "Success!";
@@ -74,7 +73,7 @@ class StrategicProgramsController extends Controller
      */
     public function show($id)
     {
-        $data = StrategicProgram::where('id',$id)->get();
+        $data = Project::where('id',$id)->get();
 
         if(count($data) > 0){
             $res['message'] = "Success!";
@@ -107,17 +106,16 @@ class StrategicProgramsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $program = $request->input('program');
-        $subprogram = $request->input('subprogram');
-        $subsubprogram = $request->input('subsubprogram');
-        $year = $request->input('year');
+        $data = Project::where('id',$id)->first();
 
-        $data = StrategicProgram::where('id',$id)->first();
-
-        $data->program = $program;
-        $data->subprogram = $subprogram;
-        $data->subsubprogram = $subsubprogram;
-        $data->year = $year;
+        $data->name = $request->input('name');
+        $data->cost = $request->input('cost');
+        $data->start_plan_date = $request->input('start_plan_date');
+        $data->end_plan_date = $request->input('end_plan_date');
+        $data->document = $request->input('document');
+        $data->program_id = $request->input('program_id');
+        $data->activity_source_id = $request->input('activity_source_id');
+        $data->team_id = $request->input('team_id');
 
         if($data->save()){
             $res['message'] = "Success!";
@@ -137,7 +135,7 @@ class StrategicProgramsController extends Controller
      */
     public function destroy($id)
     {
-        $data = StrategicProgram::where('id',$id)->first();
+        $data = Project::where('id',$id)->first();
 
         if($data->delete()){
             $res['message'] = "Success!";

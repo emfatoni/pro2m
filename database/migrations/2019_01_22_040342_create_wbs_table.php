@@ -18,10 +18,10 @@ class CreateWbsTable extends Migration
             $table->string('name', 30);
             $table->date('start_plan');
             $table->date('end_plan');
-            $table->date('start_actual');
-            $table->date('end_actual');
+            $table->date('start_actual')->nullable();;
+            $table->date('end_actual')->nullable();;
             $table->string('status', 10);
-            $table->longText('document');
+            $table->longText('document')->nullable();;
             $table->unsignedInteger('deliverable_id');
             $table->timestamps();
 
