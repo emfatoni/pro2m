@@ -9,5 +9,21 @@ create migrations:
 - wbs (done)
 
 create model:
+- strategic program (done)
+- program (done)
+- project (done)
+- program_activity (done)
+- program_activity_log (done)
+- vendor (done)
+- deliverable (done)
+- wbs (done)
 
-create controller:
+create controller + route:
+- strategic program (done)
+- program (done)
+- project
+- program_activity
+- program_activity_log
+- vendor
+- deliverable
+- wbs

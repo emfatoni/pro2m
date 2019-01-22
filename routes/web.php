@@ -16,10 +16,6 @@ Route::get('/', function () {
 });
 
 
-//Route::resource('sp', 'StrategicProgramsController');
+Route::resource('sp', 'StrategicProgramsController');
 
-Route::get('sp', 'StrategicProgramsController@index');
-
-Route::get('sp/{id}', 'StrategicProgramsController@show');
-
-Route::post('sp/store', 'StrategicProgramsController@store');
+Route::resource('program', 'ProgramsController');
