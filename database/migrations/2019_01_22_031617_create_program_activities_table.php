@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStrategicProgramsTable extends Migration
+class CreateProgramActivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateStrategicProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('strategic_programs', function (Blueprint $table) {
+        Schema::create('program_activities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('program', 130);
-            $table->string('subprogram', 130);
-            $table->string('subsubprogram', 130);
-            $table->integer('year');
+            $table->string('phase', 50);
+            $table->string('subphase', 50);
+            $table->string('activity', 100);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateStrategicProgramsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('strategic_programs');
+        Schema::dropIfExists('program_activities');
     }
 }

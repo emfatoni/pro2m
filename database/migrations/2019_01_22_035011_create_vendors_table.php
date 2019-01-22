@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStrategicProgramsTable extends Migration
+class CreateVendorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateStrategicProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('strategic_programs', function (Blueprint $table) {
+        Schema::create('vendors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('program', 130);
-            $table->string('subprogram', 130);
-            $table->string('subsubprogram', 130);
-            $table->integer('year');
+            $table->string('name', 30);
+            $table->string('contract_number', 20);
+            $table->longText('document');
+            $table->unsignedInteger('project_id');
             $table->timestamps();
+
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
@@ -30,6 +32,6 @@ class CreateStrategicProgramsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('strategic_programs');
+        Schema::dropIfExists('vendors');
     }
 }

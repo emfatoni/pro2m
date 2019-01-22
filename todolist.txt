@@ -1,0 +1,13 @@
+create migrations:
+- strategic program (done)
+- program (done)
+- project (done)
+- program_activity (done)
+- program_activity_log (done)
+- vendor (done)
+- deliverable (done)
+- wbs (done)
+
+create model:
+
+create controller:
